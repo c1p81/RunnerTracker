@@ -2,7 +2,7 @@
 
 HOST=ftp.c1p81.altervista.org
 USER=c1p81
-PASS=fircudinci54
+PASS=XXXXXXXXX
 
 ftp -inv $HOST << EOF
 user $USER $PASS
