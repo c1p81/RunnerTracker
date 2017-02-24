@@ -28,6 +28,8 @@ import android.location.LocationListener;
 import android.location.LocationProvider;
 import android.widget.ToggleButton;
 
+import com.google.firebase.crash.FirebaseCrash;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -52,12 +54,16 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
     public static final int NOTIFICATION_ID = 1;
     private NotificationManager notificationManager;
+    private PendingIntent pendingIntent;
+    private NotificationManager mNotificationManager;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //FirebaseCrash.report(new Exception("My first Android non-fatal error"));
 
         stato = (TextView) findViewById(R.id.stato);
         stato.setText("");
@@ -221,7 +227,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         // resume on notification tap
         Intent intent = new Intent(getApplicationContext(),MainActivity.class );
         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        pendingIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
 
         builder.setContentIntent(pendingIntent);
@@ -230,7 +236,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         builder.setContentText("");
         builder.setSubText("Tap per aprire Runner Tracker");
 
-        notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(NOTIFICATION_ID, builder.build());
     }
 
@@ -285,10 +291,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     @Override
     public void onDestroy()
     {
+        if (notificationManager == null)
+            notificationManager = (NotificationManager)  getSystemService(NOTIFICATION_SERVICE);
+        notificationManager.cancelAll();
         super.onDestroy();
-        //locationManager.removeUpdates(LocationManager.GPS_PROVIDER);
-        notificationManager.cancel(NOTIFICATION_ID);
-        //sendSMS(numero_telefono,"Stop;" + Integer.toString(squadra));
 
     }
 }

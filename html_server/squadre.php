@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<?php
+$squadra = $_GET['squadra'];
+//print $squadra;
+?>
 <html lang="it">
 	<head>
 		<meta charset="utf-8">
@@ -130,7 +134,7 @@ var bankias = L.geoCsv(null, {
 $.ajax ({
 	type:'GET',
 	dataType:'text',
-	url:'posizioni.txt',
+	url:'<?print $squadra?>.txt',
    error: function() {
      alert('Dati non disponibili');
    },
@@ -161,3 +165,8 @@ $('#localizame').click(function(e) {
 
 	</body>
 </html>
+
+
+<?
+phpinfo();
+?>
