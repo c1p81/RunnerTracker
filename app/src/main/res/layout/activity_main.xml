@@ -28,6 +28,24 @@
         android:layout_marginBottom="15dp"
         android:id="@+id/textView" />
 
+    <com.wefika.horizontalpicker.HorizontalPicker
+        android:id="@+id/picker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/textView3"
+        android:ellipsize="marquee"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:marqueeRepeatLimit="2"
+        android:paddingBottom="36dp"
+        android:paddingTop="1dp"
+        android:textColor="@color/text_color"
+        android:textSize="22sp"
+        app:dividerSize="5dp"
+        app:sideItems="@integer/numSideItems"
+        app:values="@array/values" />
+
     <TextView
         android:text="stato"
         android:layout_width="wrap_content"
@@ -36,20 +54,12 @@
         android:layout_centerHorizontal="true"
         android:id="@+id/stato" />
 
-    <NumberPicker
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/numberPicker2" />
 
-    <TextView
-        android:text="ID"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/toggleButton"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/textView3" />
+
+
+
+
+
 
     <ImageView
         android:layout_width="match_parent"
@@ -61,4 +71,16 @@
         android:layout_marginTop="43dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true" />
+
+
+    <TextView
+        android:text="Pettorale"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="20dp"
+        android:paddingBottom="16dp"
+        android:id="@+id/textView3"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/toggleButton" />
+
 </RelativeLayout>
